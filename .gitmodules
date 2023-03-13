@@ -1,0 +1,3 @@
+[submodule "includes/classic_sh"]
+	path = includes/classic_sh
+	url = git@github.com:GrowPlugins/classic_sh.git
