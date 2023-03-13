@@ -40,7 +40,7 @@ echo;
 echo "Downloading Dolibbar version ${dolibarrVersion}."
 echo;
 
-wget "https://sourceforge.net/projects/dolibarr/files/Dolibarr%20installer%20for%20Debian-Ubuntu%20%28DoliDeb%29/${dolibarrVersion}/dolibarr_${dolibarrVersion}-4_all.deb"
+wget "https://sourceforge.net/projects/dolibarr/files/Dolibarr%20installer%20for%20Debian-Ubuntu%20%28DoliDeb%29/${dolibarrVersion}/dolibarr_${dolibarrVersion}-4_all.deb/download"
 mv 'download' "dolibarr_${dolibarrVersion}-4_all.deb";
 
 # Prepare Dolibarr .deb Package for Installation
