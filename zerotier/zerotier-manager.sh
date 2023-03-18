@@ -63,24 +63,24 @@ main_menu()
 
 connect()
 {
-    superuser 'systemctl enable --now zerotier-one';
-    echo;
-    if [ $? -eq 0 ]
+    if [ ! "$(superuser 'systemctl enable --now zerotier-one')" ]
     then
+        echo;
         echo 'Successfully connected to ZeroTier!';
     else
+        echo;
         echo 'Something went wrong....';
     fi
 }
 
 disconnect()
 {
-    superuser 'systemctl disable --now zerotier-one';
-    echo;
-    if [ $? -eq 0 ]
+    if [ ! "$(superuser 'systemctl disable --now zerotier-one')" ]
     then
+        echo;
         echo 'Successfully disconnected from ZeroTier!';
     else
+        echo;
         echo 'Something went wrong....';
     fi
 }
