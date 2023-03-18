@@ -5,7 +5,7 @@ echo 'All snippets that can be run through this menu can be found in the "snippe
     'folder and run directly. This menu is only provided for convenience.';
 echo;
 
-echo 'Which script snippet do you want to use?';
+echo 'Which script (snippet) do you want to use?';
 echo;
 
 echo '1. dolibarr-deb-download';
@@ -18,17 +18,21 @@ echo;
 case "$choice" in
     "1")
         clear;
-        sh ./dolibarr/dolibarr-deb-download.sh;
+        cd dolibarr;
+        sh ./dolibarr-deb-download.sh;
+        cd ..;
         ;;
     "2")
         clear;
-        sh ./zerotier/zerotier-manager.sh;
+        cd zerotier;
+        sh ./zerotier-manager.sh;
+        cd ..;
         ;;
     *)
         echo 'That is not an option.';
-        echo;
         ;;
 esac
 
-echo 'Exiting menu.';
+echo;
+echo 'Exiting snippets menu.';
 exit 0;

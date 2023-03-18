@@ -32,7 +32,8 @@ read choice;
 echo;
 
 case "$choice" in
-    [Q|q])
+    [Qq])
+        echo 'Exit';
         exit 0;
         ;;
     *)

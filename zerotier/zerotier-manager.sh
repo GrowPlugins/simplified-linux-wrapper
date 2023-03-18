@@ -9,6 +9,8 @@ main_menu()
     ##
     local __continue_program=1;
 
+    clear;
+
     echo 'ZeroTier Simple Manager';
     echo;
     echo 'Please Note: This program requires super user' \
@@ -125,7 +127,7 @@ add_zt_connection()
     echo;
 
     case "$choice" in
-        [Q|q])
+        [Qq])
             return;
             ;;
         [a-zA-Z0-9]*)
@@ -152,7 +154,7 @@ leave_zt_connection()
     echo;
 
     case "$choice" in
-        [Q|q])
+        [Qq])
             return;
             ;;
         [a-zA-Z0-9]*)
