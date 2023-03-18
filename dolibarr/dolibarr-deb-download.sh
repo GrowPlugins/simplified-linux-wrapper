@@ -25,9 +25,20 @@ echo 'Welcome! We are going to download Dolibarr today in your current working d
 echo;
 
 echo 'What Dolibarr version do you want to install? (Must be in format x.x.x, such as 14.0.4)';
+echo 'Or press Q if you want to quit.';
 echo;
 
-read dolibarrVersion;
+read choice;
+echo;
+
+case "$choice" in
+    [Q|q])
+        exit 0;
+        ;;
+    *)
+        dolibarrVersion="$choice";
+        ;;
+esac
 
 # Install Required Packages
 echo 'We may need to install two more packages on your computer. Checking that now.';
