@@ -403,7 +403,7 @@ duplicate() {
 
     echo "$(sed "s/^name: [a-zA-Z0-9\_\-\ ]*$/name: ${duplicate_name}/" "${ddev_directory}/${duplicate_name}/.ddev/config.yaml")" > "${ddev_directory}/${duplicate_name}/.ddev/config.yaml";
 
-    cd "${ddev_directory}/${duplicate_name}";
+    cd "${ddev_directory}/${duplicate_name}" || exit;
 
     ddev config --project-name "$duplicate_name";
 }
