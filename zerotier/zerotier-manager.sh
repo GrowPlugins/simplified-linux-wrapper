@@ -22,7 +22,7 @@ main_menu()
     do
         echo '-- Main Menu --';
         echo;
-        echo 'Please select on of these options:';
+        echo 'Please select one of these options:';
         echo '1. Connect to ZeroTier';
         echo '2. Disconnect from ZeroTier';
         echo '3. Set/Change ZeroTier Connection';
