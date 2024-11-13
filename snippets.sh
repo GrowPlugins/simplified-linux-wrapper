@@ -20,7 +20,7 @@ main() {
         echo 'Enter :q to quit.';
         echo;
 
-        read choice;
+        read -r choice;
         clear;
 
         if [ "${choice}" = ':q' ];
@@ -37,12 +37,23 @@ main() {
 
                 # If Numeral Provided, Run Associated Script
                 [0-9]*)
+                    main_directory=$(pwd);
+
                     # Determine Selected Script Path
-                    path=$(grep -i "$choice " ./snippets-list.txt | sed s/"^[0-9]* - [a-zA-Z0-9\_\ \-]* ("/''/g);
-                    path=$(echo "$path" | sed s/")$"/''/g);
+                    full_path=$(grep -i "^${choice} \-" ./snippets-list.txt | sed s/"^[0-9]* - [a-zA-Z0-9\,\;\:\?\!\.\ \_\-]* ("/''/g | sed s/")$"/''/g);
+
+                    path=$(echo "$full_path" | sed s/"\/[a-zA-Z0-9\,\;\:\?\!\.\ \_\-]*.sh$"/''/g);
+
+                    snippet=$(echo "$full_path" | sed s/"^\.\/[a-zA-Z0-9\,\;\:\?\!\.\ \_\-]*\/"/''/g);
+
+                    # Change to Snippet Directory to Allow Snippet-Level Includes
+                    cd "$path" || exit;
 
                     # Execute Selected Script
-                    sh "$path";
+                    sh "./${snippet}";
+
+                    # Go Back to Main Directory
+                    cd "$main_directory" || exit;
 
                     # Clear Screen After Script Exits
                     clear;
@@ -55,7 +66,8 @@ main() {
                     echo 'ID - Snippet';
                     echo '----------------------';
 
-                    value=$(grep -i "$choice" ./snippets-list.txt | sed s/"[a-zA-Z0-9\/\(\)\.\-]*.sh)$"/''/g;);
+                    # Return Snippets Based on Input
+                    value=$(grep -i "\- [a-zA-Z\_\-]*${choice}[a-zA-Z\_\-]* \-" ./snippets-list.txt | sed s/"[a-zA-Z0-9\/\(\)\.\-]*.sh)$"/''/g;);
 
                     if [ "$value" != "" ]
                     then
@@ -66,7 +78,7 @@ main() {
                         echo;
                     fi
 
-                    wait_for_input;
+                    sleep 2;
                     ;;
 
             esac;
@@ -76,10 +88,10 @@ main() {
                 echo 'These are all the snippets available.';
                 echo;
 
-                cat ./snippets-list.txt | sed s/" - [a-zA-Z0-9\-]*\.sh$"/''/g;
+                sed s/"[a-zA-Z0-9\/\(\)\.\-]*.sh)$"/''/g < ./snippets-list.txt;
                 echo;
 
-                wait_for_input;
+                sleep 2;
         fi;
 
     done;
@@ -98,14 +110,6 @@ introduction_message(){
         'folder and run directly.';
     echo 'This menu is only provided for convenience.';
     echo;
-}
-
-wait_for_input(){
-
-    echo 'Press Enter to continue.';
-    echo;
-    
-    read -r choice;
 }
 
 snippet_usage_message() {
