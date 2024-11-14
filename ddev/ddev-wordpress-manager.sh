@@ -26,14 +26,14 @@ main() {
         echo 'Please select one of these options:';
         echo '--------------------';
         echo;
-        echo 'start - Start a ddev WordPress Site';
-        echo 'stop - Stop a ddev WordPress Site';
-        echo 'snapshot-create - Create a Snapshot of a ddev WordPress Site';
-        echo 'snapshot-restore - Restore a Snapshot of a ddev WordPress Site'
-        echo 'export-database - Export a ddev WordPress Site database'
-        echo 'create - Create a New ddev WordPress Site';
-        echo 'delete - Delete an Existing ddev WordPress Site';
-        echo 'duplicate - Duplicate an Existing ddev WordPress Site';
+        echo 'start - Start a DDEV WordPress Site';
+        echo 'stop - Stop a DDEV WordPress Site';
+        echo 'snapshot-create - Create a Snapshot of a DDEV WordPress Site';
+        echo 'snapshot-restore - Restore a Snapshot of a DDEV WordPress Site'
+        echo 'export-database - Export a DDEV WordPress Site database'
+        echo 'create - Create a New DDEV WordPress Site';
+        echo 'delete - Delete an Existing DDEV WordPress Site';
+        echo 'duplicate - Duplicate an Existing DDEV WordPress Site';
         echo 'Exit'
         echo;
 
@@ -108,7 +108,7 @@ install_ddev() {
     if [ ! -f "$ddev_path" ]
     then
 
-        echo 'It looks like ddev is not installed yet. Would you like to install it?';
+        echo 'DDEV cannot be found. Would you like to install it?';
         echo 'Y = yes; N = no';
         echo;
 

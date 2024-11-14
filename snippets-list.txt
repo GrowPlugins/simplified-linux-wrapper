@@ -1,3 +1,0 @@
-1 - dolibarr (./dolibarr/dolibarr-deb-download.sh)
-2 - ddev (./ddev/ddev-websites.sh)
-3 - zerotier (./zerotier/zerotier-manager.sh)
