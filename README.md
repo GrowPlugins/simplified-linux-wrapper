@@ -1,7 +1,7 @@
 # What is the Simplified Linux Wrapper?
 This Linux shell script includes wrappers for various Linux CLI applications. The goal of this project is to make running various applications via CLI easier, without forcing you to remember ten arguments and commands for each application. This shell program is not meant to replace GUI's, so it focuses primarily on programs that must be (or perhaps are better to) run in a terminal.
 
-![image](https://github.com/user-attachments/assets/a725c9c8-9e79-43a1-a1d4-27f05965288a)
+![Screenshot_20241113_185916](https://github.com/user-attachments/assets/09312672-4b3c-4527-bd73-cd1ec21f801d)
 
 # What Linux Applications Have a Wrapper So Far?
 - [ZeroTier](https://www.zerotier.com/)
