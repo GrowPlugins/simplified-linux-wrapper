@@ -3,8 +3,6 @@ This Linux shell script includes wrappers for various Linux CLI applications. Th
 
 ![image](https://github.com/user-attachments/assets/a725c9c8-9e79-43a1-a1d4-27f05965288a)
 
-![all-snippets](https://github.com/user-attachments/assets/779dfc4d-2302-4109-ba4b-7f7e2c551df4)
-
 # What Linux Applications Have a Wrapper So Far?
 - [ZeroTier](https://www.zerotier.com/)
   - zerotier-manager.sh -- Allows starting and stopping the ZeroTier service, as well as adding and removing ZeroTier networks. -- Requires: [ZeroTierOne](https://www.zerotier.com/download/) be installed, and uses `zerotier-cli`.
