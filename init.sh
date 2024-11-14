@@ -11,11 +11,11 @@ main() {
     while [ $program_continue -eq 1 ];
     do
 
-        echo '-- Instructions -------';
-        echo 'Type any part of a snippet name and press Enter to search for it.';
-        echo 'Enter ALL to see all available snippets.';
+        echo '-------- Instructions --------';
+        echo 'Type any part of an application you want to run and press Enter to search for it.';
+        echo 'Enter ALL to see all available application wrappers.';
         echo;
-        snippet_usage_message;
+        menu_usage_message;
         echo;
         echo 'Enter :q to quit.';
         echo;
@@ -40,17 +40,17 @@ main() {
                     main_directory=$(pwd);
 
                     # Determine Selected Script Path
-                    full_path=$(grep -i "^${choice} \-" ./snippets-list.txt | sed s/"^[0-9]* - [a-zA-Z0-9\,\;\:\?\!\.\ \_\-]* ("/''/g | sed s/")$"/''/g);
+                    full_path=$(grep -i "^${choice} \-" ./wrapper-list.txt | sed s/"^[0-9]* - [a-zA-Z0-9\,\;\:\?\!\.\ \_\-]* ("/''/g | sed s/")$"/''/g);
 
                     path=$(echo "$full_path" | sed s/"\/[a-zA-Z0-9\,\;\:\?\!\.\ \_\-]*.sh$"/''/g);
 
-                    snippet=$(echo "$full_path" | sed s/"^\.\/[a-zA-Z0-9\,\;\:\?\!\.\ \_\-]*\/"/''/g);
+                    wrapper=$(echo "$full_path" | sed s/"^\.\/[a-zA-Z0-9\,\;\:\?\!\.\ \_\-]*\/"/''/g);
 
-                    # Change to Snippet Directory to Allow Snippet-Level Includes
+                    # Change to Wrapper Directory to Allow Wrapper-Level Includes
                     cd "$path" || exit;
 
                     # Execute Selected Script
-                    sh "./${snippet}";
+                    sh "./${wrapper}";
 
                     # Go Back to Main Directory
                     cd "$main_directory" || exit;
@@ -63,11 +63,11 @@ main() {
 
                 # Otherwise Assume Search, Return Scripts That Match Search
                 *)
-                    echo 'ID - Snippet';
+                    echo 'ID - Application Wrapper';
                     echo '----------------------';
 
-                    # Return Snippets Based on Input
-                    value=$(grep -i "\- [a-zA-Z\_\-]*${choice}[a-zA-Z\_\-]* \-" ./snippets-list.txt | sed s/"[a-zA-Z0-9\/\(\)\.\-]*.sh)$"/''/g;);
+                    # Return Wrappers Based on Input
+                    value=$(grep -i "\- [a-zA-Z\_\-]*${choice}[a-zA-Z\_\-]* \-" ./wrapper-list.txt | sed s/"[a-zA-Z0-9\/\(\)\.\-]*.sh)$"/''/g;);
 
                     if [ "$value" != "" ]
                     then
@@ -78,20 +78,20 @@ main() {
                         echo;
                     fi
 
-                    sleep 2;
+                    display_waiting 3;
                     ;;
 
             esac;
 
         else
 
-                echo 'These are all the snippets available.';
+                echo 'These are all the applications available.';
                 echo;
 
-                sed s/"[a-zA-Z0-9\/\(\)\.\-]*.sh)$"/''/g < ./snippets-list.txt;
+                sed s/"[a-zA-Z0-9\/\(\)\.\-]*.sh)$"/''/g < ./wrapper-list.txt;
                 echo;
 
-                sleep 2;
+                display_waiting 3;
         fi;
 
     done;
@@ -100,21 +100,42 @@ main() {
 script_title() {
 
     echo '====================';
-    echo 'The "snippets" Menu';
+    echo 'Simplified Linux Wrapper Menu';
     echo '====================';
 }
 
 introduction_message(){
     
-    echo 'All snippets that can be run through this menu can be found in the "snippets"'\
-        'folder and run directly.';
-    echo 'This menu is only provided for convenience.';
+    echo 'All application wrappers that can be run through this menu can be run directly as well.';
+    echo 'This menu is only provided for your convenience.';
     echo;
 }
 
-snippet_usage_message() {
+menu_usage_message() {
 
-    echo "When you know what snippet you want to use, enter the snippet's ID";
+    echo "When you know what application wrapper you want to use, enter the application wrapper's ID";
+}
+
+display_waiting() {
+
+    time_to_wait="$1";
+    timer=0;
+
+    while [ "$timer" -lt "$time_to_wait" ]
+    do
+        sleep .5;
+
+        echo '-\c';
+
+        sleep .5;
+
+        echo '-\c';
+
+        timer=$(expr $timer + 1);
+    done
+
+    echo;
+    echo;
 }
 
 main;
