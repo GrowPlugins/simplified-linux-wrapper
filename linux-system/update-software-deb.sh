@@ -60,6 +60,7 @@ endProgramWithKeyPress() {
     echo 'Press Enter key to quit.';
     echo;
 
+    # shellcheck disable=SC2034
     read enter;
 
     clear;
