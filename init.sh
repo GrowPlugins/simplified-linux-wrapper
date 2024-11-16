@@ -40,11 +40,11 @@ main() {
                     main_directory=$(pwd);
 
                     # Determine Selected Script Path
-                    full_path=$(grep -i "^${choice} \-" ./wrapper-list.txt | sed s/"^[0-9]* - [a-zA-Z0-9\,\;\:\?\!\.\ \_\-]* ("/''/g | sed s/")$"/''/g);
+                    full_path=$(grep -i "^${choice} \-" ./wrapper-list.txt | sed s/"^[0-9]* - [a-zA-Z0-9\,\;\:\?\!\.\ \/\_\-]* ("/''/g | sed s/")$"/''/g);
 
                     path=$(echo "$full_path" | sed s/"\/[a-zA-Z0-9\,\;\:\?\!\.\ \_\-]*.sh$"/''/g);
 
-                    wrapper=$(echo "$full_path" | sed s/"^\.\/[a-zA-Z0-9\,\;\:\?\!\.\ \_\-]*\/"/''/g);
+                    wrapper=$(echo "$full_path" | sed s/"^\.\/[a-zA-Z0-9\,\;\:\?\!\.\ \/\_\-]*\/"/''/g);
 
                     # Change to Wrapper Directory to Allow Wrapper-Level Includes
                     cd "$path" || exit;
