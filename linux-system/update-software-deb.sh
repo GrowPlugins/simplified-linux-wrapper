@@ -36,14 +36,14 @@ getUpgrades() {
     superuser 'apt-get upgrade -yq';
     echo;
 
-    if [ -f $(which flatpak) ]
+    if [ -f "$(which flatpak)" ]
     then
 
         flatpak update -y;
         echo;
     fi
 
-    if [ -f $(which snap) ]
+    if [ -f "$(which snap)" ]
     then
 
         superuser 'snap refresh';
