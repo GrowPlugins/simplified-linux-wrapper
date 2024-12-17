@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ../includes/classic_sh/platform_processes.sh;
+. ../includes/classic_sh/users_and_authentication.sh;
 
 main_menu()
 {
@@ -63,6 +63,7 @@ main_menu()
 
 connect()
 {
+
     if [ ! "$(superuser 'systemctl enable --now zerotier-one')" ]
     then
         echo;
