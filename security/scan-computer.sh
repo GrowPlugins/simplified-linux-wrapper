@@ -2,7 +2,7 @@
 
 #. ../includes/classic_sh/users_and_authentication.sh;
 #. ../includes/classic_sh/system_info.sh;
-. ../includes/classic_sh/script_helper.sh;
+. ../includes/classic_sh/init_required.sh;
 
 main() {
 
@@ -55,7 +55,7 @@ install_rkhunter () {
 
     sanitize_input 'ip addr; ip address' 'no programs';
 
-    #rkhunter_installed=$(is_package_installed 'rkhunter');
+    rkhunter_installed=$(is_package_installed 'rkhunter');
 
     #if [ "$rkhunter_installed" != '1' ]
     #then

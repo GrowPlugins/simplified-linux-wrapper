@@ -256,7 +256,7 @@ restore_snapshot() {
         return;
     fi
 
-    ddev restore-snapshot "${snapshot_name}"
+    ddev snapshot restore "${snapshot_name}"
 }
 
 export_database() {
