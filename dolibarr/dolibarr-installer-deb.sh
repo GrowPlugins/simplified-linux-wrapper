@@ -10,7 +10,7 @@
 # dpkg: error processing archive dolibarr_X.X.X-4_all.deb
 # Errors were encountered while processing: dolibarr_X.X.X-4_all.deb
 #
-# Last Tested Dolibarr Version: 17.0.0
+# Last Tested Dolibarr Version: 20.0.3
 #
 # The installer fix performed by this script is based on the following forum thread:
 # https://www.dolibarr.org/forum/t/unable-to-install-dolibarr-15-0-2-4-all-deb-on-debian-11-bullseye/22355/6
@@ -22,6 +22,7 @@
 clear;
 
 echo 'Welcome! We are going to download Dolibarr today in your current working directory.';
+echo "If you currently have a previous version of Dolibarr installed, don't forget to backup your Dolibarr files and database before running this installation!";
 echo;
 
 echo 'What Dolibarr version do you want to install? (Must be in format x.x.x, such as 14.0.4)';
@@ -36,7 +37,7 @@ case "$choice" in
         echo 'Exit';
         exit 0;
         ;;
-    *)
+    [0-9]*\.[0-9]*\.[0-9]*)
         dolibarrVersion="$choice";
         ;;
 esac
@@ -69,9 +70,14 @@ rm "dolibarr_${dolibarrVersion}-4_all.deb";
 ar cr "dolibarr_${dolibarrVersion}-4_all.deb" debian-binary control.tar.xz data.tar.xz;
 rm debian-binary control.tar.xz control.tar.zst data.tar.xz data.tar.zst;
 
+# Install Dolibarr
+sudo "apt install ./dolibarr_${dolibarrVersion}-4_all.deb" -y;
+
 # Finish
 echo;
 echo 'Everything is complete!';
-echo 'To install Dolibarr, use the following command:';
-echo "sudo apt install ./dolibarr_${dolibarrVersion}-4_all.deb"
-echo "If you currently have a previous version of Dolibarr installed, don't forget to backup your Dolibarr files and database before running the installation!";
+
+echo;
+echo 'Press Enter to close this script.';
+
+return;
