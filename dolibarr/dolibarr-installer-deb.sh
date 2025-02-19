@@ -73,11 +73,40 @@ rm debian-binary control.tar.xz control.tar.zst data.tar.xz data.tar.zst;
 # Install Dolibarr
 sudo "apt install ./dolibarr_${dolibarrVersion}-4_all.deb" -y;
 
+echo "create database dolibarr;" | sudo mariadb;
+
+pass=$(od -An -N16 -i /dev/random);
+
+pass=$(echo "$pass" | sed s/'[ \-]*'//g);
+
+echo "CREATE USER 'doli'@'localhost' IDENTIFIED BY '${pass}';" | sudo mariadb;
+
+echo "GRANT ALL PRIVILEGES ON dolibarr.* TO 'doli'@'localhost';" | sudo mariadb;
+
 # Finish
+echo 'Initial installation is complete!';
 echo;
-echo 'Everything is complete!';
 
+echo 'Go to http://localhost/dolibarr/install to finalize the installation.';
+
+
+echo 'For the Dolibarr Database, enter the following:';
 echo;
+
+echo '============';
+echo 'Database Name: dolibarr';
+echo 'Login: doli';
+echo "Password: $pass";
+echo '=============';
+echo;
+
+echo 'Uncheck "Create Databse" and "Create user account..."';
+echo;
+
+echo 'You might want to write down the database name, login, and password in a safe location, just in case.';
+echo;
+
 echo 'Press Enter to close this script.';
+echo;
 
-return;
+read;
