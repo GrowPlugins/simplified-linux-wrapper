@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ../includes/classic_sh/platform_processes.sh;
+. ../includes/classic_sh/users_and_authentication.sh;
 
 main() {
 

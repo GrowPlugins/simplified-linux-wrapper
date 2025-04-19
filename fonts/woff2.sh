@@ -30,4 +30,4 @@ echo;
 read -r file
 echo;
 
-sfnt2woff "$file";
+sfnt2woff -v 2.0 "$file";
