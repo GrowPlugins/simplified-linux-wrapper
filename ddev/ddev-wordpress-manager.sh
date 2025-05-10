@@ -19,8 +19,14 @@ main() {
 
     install_ddev;
 
+    echo;
+
     while [ "$__continue_program" -eq "1" ]
     do
+
+        echo "$(ddev --version)";
+        echo;
+
         echo '-- Main Menu --';
         echo;
         echo 'Please select one of these options:';
@@ -29,12 +35,13 @@ main() {
         echo 'start - Start a DDEV WordPress Site';
         echo 'stop - Stop a DDEV WordPress Site';
         echo 'snapshot-create - Create a Snapshot of a DDEV WordPress Site';
-        echo 'snapshot-restore - Restore a Snapshot of a DDEV WordPress Site'
-        echo 'export-database - Export a DDEV WordPress Site database'
+        echo 'snapshot-restore - Restore a Snapshot of a DDEV WordPress Site';
+        echo 'export-database - Export a DDEV WordPress Site database';
         echo 'create - Create a New DDEV WordPress Site';
         echo 'delete - Delete an Existing DDEV WordPress Site';
         echo 'duplicate - Duplicate an Existing DDEV WordPress Site';
-        echo 'Exit'
+        echo 'update - Update your version of DDEV to the latest stable version';
+        echo 'exit';
         echo;
 
         read -r choice;
@@ -81,6 +88,11 @@ main() {
 
                 echo;
                 ;;
+            [uU]pdate)
+                update_ddev;
+
+                echo;
+                ;;
             [eE]xit)
                 # Close Program
                 __continue_program=0;
@@ -108,6 +120,8 @@ install_ddev() {
     if [ ! -f "$ddev_path" ]
     then
 
+        echo;
+
         echo 'DDEV cannot be found. Would you like to install it?';
         echo 'Y = yes; N = no';
         echo;
@@ -121,6 +135,18 @@ install_ddev() {
             curl -fsSL https://ddev.com/install.sh | bash
         fi
     fi
+}
+
+update_ddev() {
+
+    echo "Current $(ddev --version)";
+    echo;
+
+    # Download and run the install script
+    #curl -fsSL https://ddev.com/install.sh | bash
+
+    echo "New $(ddev --version)";
+    echo;
 }
 
 start() {
