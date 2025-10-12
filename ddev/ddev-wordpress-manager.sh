@@ -143,7 +143,7 @@ update_ddev() {
     echo;
 
     # Download and run the install script
-    #curl -fsSL https://ddev.com/install.sh | bash
+    curl -fsSL https://ddev.com/install.sh | bash
 
     echo "New $(ddev --version)";
     echo;
